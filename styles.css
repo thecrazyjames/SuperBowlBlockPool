@@ -1,0 +1,26 @@
+body {
+  margin: 40px;
+}
+
+.grid-container{
+  display: grid;
+  grid-template-columns: 4% 4% 4% 4% 4% 4% 4% 4% 4% 4% 4%;
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
+
+.item {
+  background-color: #444;
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 75%;
+  
+}
+
+.item:hover {
+  background-color: lightblue;
+  border-style: solid;
+  border-color: green;
+}
