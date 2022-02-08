@@ -143,8 +143,9 @@ function changeColor() {
     this.style.color = color? '' : 'red';
 }
 
-function changeStatus(){
-
-}
+//function changeStatus() {
+//    let display = this.display;
+//    this.display = display? "Open" : "Closed";
+//}
 
 
