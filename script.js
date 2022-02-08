@@ -20,8 +20,6 @@
    "Open 88", "Open 89", "Open 90", "Open 91", "Open 92", "Open 93", "Open 94", "Open 95", "Open 96", "Open 97", "Open 98",
    "Open 99", "Open 100"];
 
-
-   
    function shuffleArray(array) {
      let currentIndex = array.length,  randomIndex;
    
