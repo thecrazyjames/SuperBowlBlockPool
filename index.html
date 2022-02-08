@@ -21,37 +21,35 @@
 
   <p>This grid layout contains 10 columns and 10 rows. Select a square that hasn't been chosen yet.</p>
 
-  <p id="display-array">Hole</p>
-
   <p>Click the following button to see the function in action</p>  
-  <input type = "button" onclick = "quarterScoreUpdate(arrayTop, arrayBottom)" value = "Display">  
+  <input type = "button" onclick = "quarterScoreUpdate(arrayTop, arrayLeft)" value = "Shuffle Score">  
   
   <p>Rules of the game are that the blocks will be randomized</p>
   
   <div class="grid-container">
-    <div class=item id="item 00">EMPTY</div>
-    <div class=item id="item 01">random number 1</div>
-    <div class=item id="item 02">random number 2</div>
-    <div class=item id="item 03">random number 3</div>
-    <div class=item id="item 04">random number 4</div>
-    <div class=item id="item 05">random number 5</div>
-    <div class=item id="item 06">random number 6</div>
-    <div class=item id="item 07">random number 7</div>
-    <div class=item id="item 08">random number 8</div>
-    <div class=item id="item 09">random number 9</div>
-    <div class=item id="item 010">random number 10</div>
-    <div class=item 1 id="item 10">random number 1</div>
+    <div class=item id="item 00"></div>
+    <div class=item id="item 01">?</div>
+    <div class=item id="item 02">?</div>
+    <div class=item id="item 03">?</div>
+    <div class=item id="item 04">?</div>
+    <div class=item id="item 05">?</div>
+    <div class=item id="item 06">?</div>
+    <div class=item id="item 07">?</div>
+    <div class=item id="item 08">?</div>
+    <div class=item id="item 09">?</div>
+    <div class=item id="item 010">?</div>
+    <div class=item 1 id="item 10">?</div>
     <div class=item 1>0</div>
     <div class=item 2>1</div>
     <div class=item 3>2</div>
     <div class=item 4>3</div>
-    <div class=item 5>4</div>
+    <input type = "button" onclick = "fillOutSquare()" value = "8" class=item>
     <div class=item 6>5</div>
     <div class=item 7>6</div>
     <div class=item 8>7</div>
     <div class=item 9>8</div>
     <div class=item 10>9</div>
-    <div class=item id="item 20" 1>random number 2</div>
+    <div class=item id="item 20" 1>?</div>
     <div class=item 11>10</div>
     <div class=item 12>11</div>
     <div class=item 13>12</div>
@@ -62,7 +60,7 @@
     <div class=item 18>17</div>
     <div class=item 19>18</div>
     <div class=item 20>19</div>
-      <div class=item 1 id="item 30">random number 3</div>
+      <div class=item 1 id="item 30">?</div>
     <div class=item 21>20</div>
     <div class=item 22>21</div>
     <div class=item 23>22</div>
@@ -73,7 +71,7 @@
     <div class=item 28>27</div>
     <div class=item 29>28</div>
     <div class=item 30>29</div>
-    <div class=item 1 id="item 40">random number 4</div>
+    <div class=item 1 id="item 40">?</div>
     <div class=item 31>30</div>
     <div class=item 32>31</div>
     <div class=item 33>32</div>
@@ -84,7 +82,7 @@
     <div class=item 38>37</div>
     <div class=item 39>38</div>
     <div class=item 40>39</div>
-    <div class=item 1 id="item 50">random number 5</div>
+    <div class=item 1 id="item 50">?</div>
     <div class=item 41>40</div>
     <div class=item 42>41</div>
     <div class=item 43>42</div>
@@ -95,7 +93,7 @@
     <div class=item 48>47</div>
     <div class=item 49>48</div>
     <div class=item 50>49</div>
-    <div class=item 1 id="item 60">random number 6</div>
+    <div class=item 1 id="item 60">?</div>
     <div class=item 51>50</div>
     <div class=item 52>51</div>
     <div class=item 53>52</div>
@@ -106,7 +104,7 @@
     <div class=item 58>57</div>
     <div class=item 59>58</div>
     <div class=item 60>59</div>
-    <div class=item 1 id="item 70">random number 7</div>
+    <div class=item 1 id="item 70">?</div>
     <div class=item 61>60</div>
     <div class=item 62>61</div>
     <div class=item 63>62</div>
@@ -117,7 +115,7 @@
     <div class=item 68>67</div>
     <div class=item 69>68</div>
     <div class=item 70>69</div>
-    <div class=item 1 id="item 80">random number 8</div>
+    <div class=item 1 id="item 80">?</div>
     <div class=item 71>70</div>
     <div class=item 72>71</div>
     <div class=item 73>72</div>
@@ -128,7 +126,7 @@
     <div class=item 78>77</div>
     <div class=item 79>78</div>
     <div class=item 80>79</div>
-    <div class=item 1 id="item 90">random number 9</div>
+    <div class=item 1 id="item 90">?</div>
     <div class=item 81>80</div>
     <div class=item 82>81</div>
     <div class=item 83>82</div>
@@ -139,7 +137,7 @@
     <div class=item 88>87</div>
     <div class=item 89>88</div>
     <div class=item 90>89</div>
-    <div class=item 1 id="item 100">random number 10</div>
+    <div class=item 1 id="item 100">?</div>
     <div class=item 91>90</div>
     <div class=item 92>91</div>
     <div class=item 93>92</div>
@@ -154,11 +152,6 @@
 
     <script src="script.js"></script>
 
-    // var arrayDisplayTest = ["ken", "James", "Tippy"];
-
-   // document.getElementById("display-array").innerHTML = arrayDisplayTest[1];
-
-    </script>
 
 </body>
 </html>
