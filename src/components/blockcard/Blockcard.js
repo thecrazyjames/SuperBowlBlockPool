@@ -15,9 +15,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import blockdata100 from '../../utils/blockdata100.js'
 
-const Blockcard = ({id, status, firstName, lastName}) => {
+const Blockcard = ({id, status, firstName, lastName, email}) => {
   
   const [open, setOpen] = React.useState(false);
+  const [getEmail, setGetEmail] = React.useState('');
+  const [blockPoolData, setBlockPoolData] = React.useState(blockdata100)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -27,9 +29,14 @@ const Blockcard = ({id, status, firstName, lastName}) => {
     setOpen(false);
   };
 
+  const handleTextUpdate = (e) => {
+    setGetEmail(e.target.value)
+    console.log(getEmail)
+  }
+
   const claimBlock = () => {
     
-
+    blockdata100.blocks[id-1].email=getEmail
 
     handleClose()
   }
@@ -41,7 +48,7 @@ const Blockcard = ({id, status, firstName, lastName}) => {
       <CardActionArea onClick={handleClickOpen}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          { status == "Open" ? status + id: firstName + " " + lastName }
+          { status === "Open" ? status + id: email }
         </Typography>
       </CardContent>
       </CardActionArea>
@@ -58,14 +65,16 @@ const Blockcard = ({id, status, firstName, lastName}) => {
             margin="dense"
             id="emailaddress"
             label="Email Address"
-            type="email"
+            type="text"
+            value={getEmail}
+            onChange={handleTextUpdate}
             fullWidth
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Claim Block</Button>
+          <Button onClick={claimBlock}>Claim Block</Button>
         </DialogActions>
       </Dialog>
 
