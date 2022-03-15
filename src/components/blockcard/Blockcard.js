@@ -13,13 +13,17 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import blockdata100 from '../../utils/blockdata100.js'
-
-const Blockcard = ({id, status, firstName, lastName, email}) => {
+const Blockcard = (id) => {
   
   const [open, setOpen] = React.useState(false);
-  const [getEmail, setGetEmail] = React.useState('');
-  const [blockPoolData, setBlockPoolData] = React.useState(blockdata100)
+  const [open2, setOpen2] = React.useState(false);
+  const [cardData, setCardData] = React.useState({
+    blocknumber: id,
+    userStatus: "Open",
+    userFirstName: "",
+    userLastName: "",
+    userEmail: ""
+  })
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -27,54 +31,148 @@ const Blockcard = ({id, status, firstName, lastName, email}) => {
 
   const handleClose = () => {
     setOpen(false);
+    console.log(cardData)
   };
 
-  const handleTextUpdate = (e) => {
-    setGetEmail(e.target.value)
-    console.log(getEmail)
-  }
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
 
-  const claimBlock = () => {
+  const handleClose2 = () => {
+    setOpen2(false);
+    console.log(cardData)
+  };
+
+  const handleInputChange = (e) => {
+    setCardData({...cardData,
+      [e.target.name]: e.target.value
+    })
+      console.log(cardData);
     
-    blockdata100.blocks[id-1].email=getEmail
-
-    handleClose()
   }
-  
+
+  const handleStatusCancel = () => {
+    setCardData({
+      ...cardData,
+      userStatus: "Open",
+      userFirstName: "",
+      userLastName: "",
+      userEmail: ""
+    })
+    handleClose();
+    console.log(cardData)
+  }
+
+  const handleStatusCancel2 = () => {
+    setCardData({
+      ...cardData,
+      userStatus: "Open",
+      userFirstName: "",
+      userLastName: "",
+      userEmail: ""
+    })
+    handleClose2();
+    console.log(cardData)
+  }
+
+  const handleStatusClaim = () => {
+    setCardData({
+      ...cardData,
+      userStatus: "Closed",
+      
+    })
+    handleClose();
+    console.log(cardData)
+  }
+
   return (
     <div className="Blockcard">
+    {/* { cardData.userStatus === "Closed" ? "css-46bh2p-MuiCardContent-root statusClosed" :"Blockcard"}> */}
 
-    <Card>
-      <CardActionArea onClick={handleClickOpen}>
-      <CardContent>
+    {/* Clickable "Card" which reserves a block for you */}
+
+    <Card >
+      <CardActionArea onClick={cardData.userStatus === "Open" ? handleClickOpen : handleClickOpen2}>
+      <CardContent className='cardContent'>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          { status === "Open" ? status + id: email }
+          { cardData.userStatus === "Open" ? cardData.userStatus + " " + cardData.blocknumber.id : cardData.userFirstName[0]+ ". " + cardData.userLastName.substring(0, 5) }
         </Typography>
       </CardContent>
       </CardActionArea>
     </Card>
 
+    {/* Dialog for entering in information to claim a block that was clicked on */}
+    
     <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To claim BLOCK {id} before anyone else, please enter your information and click "Claim Block"
+            To claim BLOCK before anyone else, please enter your information and click "Claim Block"
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="emailaddress"
             label="Email Address"
+            type="email"
+            name="userEmail"
+            onChange={handleInputChange}
+            fullWidth
+            variant="standard"
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="userFirstName"
+            label="First Name"
             type="text"
-            value={getEmail}
-            onChange={handleTextUpdate}
+            name="userFirstName"
+            onChange={handleInputChange}
+            fullWidth
+            variant="standard"
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="userLastName"
+            label="Last Name"
+            type="text"
+            name="userLastName"
+            onChange={handleInputChange}
             fullWidth
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={claimBlock}>Claim Block</Button>
+          <Button onClick={handleStatusCancel}>Cancel</Button>
+          <Button onClick={handleStatusClaim}>Claim Block</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Dialog Box for Checking the Reservation Info and an option to cancel the block */}
+
+      <Dialog open={open2} onClose={handleClose}>
+        <DialogTitle>This Block is Reserved By:</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            First Name: {cardData.userFirstName}
+          </DialogContentText>
+          <DialogContentText>
+            Last Name: {cardData.userLastName}
+          </DialogContentText>
+          <DialogContentText>
+            Email: {cardData.userEmail}
+          </DialogContentText>
+          <br></br>
+          <DialogContentText>
+            Would you like to cancel this block reservation?
+          </DialogContentText>
+          
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose2}>Keep Reservation</Button>
+          <Button onClick={handleStatusCancel2}>Yes, Cancel the Reservation</Button>
+          
         </DialogActions>
       </Dialog>
 
